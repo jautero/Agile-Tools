@@ -1,0 +1,21 @@
+Agile-Tools
+===========
+
+Agile-Tools is a set of HTML5 tools for mobile devices. 
+So far following tools have been planned
+
+Sprint Backlog Burner
+---------------------
+This application is intended to make easier to update sprint burndown.
+At the start of the sprint total size of the backlog is given and 
+as team reports reductions from that in daily scrum, those are entered.
+Application sums up reductions and reports total hours burned and updates
+burndown status. One possible feature is also showing burndown charts.
+It should eventually also support per user story burndowns.
+
+Virtual Planning Poker Deck
+---------------------------
+This allows team member to use his or her mobile device as a virtual 
+planning poker deck. He or she selects a card and shows it when voting.
+Planned features is syncing reveal of cards to external server or using
+motion sensor to do it (3 shakes?).
