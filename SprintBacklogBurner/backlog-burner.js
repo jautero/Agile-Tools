@@ -4,5 +4,9 @@ function SprintBacklogBurner() {
     };
     this.getSprintSize=function(size) {
         return this.size;
-    }
+    };
+    this.burnHours=function(amount) {
+        this.size -= amount;
+        return true;
+    };
 };
