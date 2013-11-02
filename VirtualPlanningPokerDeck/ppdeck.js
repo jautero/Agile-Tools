@@ -9,6 +9,10 @@ function VirtualPlanningPokerDeck(deck){
     this.setupDeck=function(deckdata) {
         this.back=deckdata.back;
         this.cards=deckdata.cards;
+    };
+    this.Draw=function() {
+        var cardFront=document.getElementById("front");
+        cardFront.innerHTML=this.cards[this.currentCard];
     }
     if (typeof deck == "string") {
         if (deck in Decks) {
@@ -16,5 +20,6 @@ function VirtualPlanningPokerDeck(deck){
         }
     } else {
         this.setupDeck(deck);
-    }
+    };
+    this.currentCard=0;
 };
