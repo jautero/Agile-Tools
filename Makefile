@@ -23,6 +23,10 @@ SPRINTBACKLOGBURNER_RESOURCES = backlog-burner.js backlog-burner.css
 
 $(eval $(call subproject,SprintBacklogBurner))
 
+VIRTUALPLANNINGPOKERDECK_RESOURCES = ppdeck.js ppdeck.css
+
+$(eval $(call subproject,VirtualPlanningPokerDeck))
+
 buildall: $(PROJECTS)
 	
 testall: 
