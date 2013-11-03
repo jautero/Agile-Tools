@@ -31,7 +31,7 @@ test("Flick left", function() {
             nextCard=0;
         deck.flickLeft();
         equal(deck.currentCard,nextCard,"Current card is second card");
-        equal(cardFrontElement.html(),deck.cards[nextCard],"Flick should update card.");    
+        equal(cardFrontElement.html(),deck.cards[nextCard],"Flick should update card.");
     }
 });
 
