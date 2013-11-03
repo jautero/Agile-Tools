@@ -13,11 +13,12 @@ test("create simple deck",function(){
     var deck=new VirtualPlanningPokerDeck({back:"",cards:["1","2","3","4"]});
     equal(deck.cards.length,4,"Deck does has four cards");
 });
-test("Draw deck",function(){
+test("deck setup and draw",function(){
     var deck=new VirtualPlanningPokerDeck("reaktor");
     equal(deck.currentCard,0,"Current card is first card");
-    deck.Draw();
     equal(cardFrontElement.html(),deck.cards[0],"Element front should contain first card.");
+    equal(cardFrontElement.css("visibility"),"visible","Card front should be visible.");
+    equal(cardBackElement.css("visibility"),"hidden","Card back should be hidden.");
     deck.currentCard=3;
     deck.Draw();
     equal(cardFrontElement.html(),deck.cards[3],"Draw should update card to current card.");

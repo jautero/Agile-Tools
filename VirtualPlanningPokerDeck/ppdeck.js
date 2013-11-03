@@ -38,4 +38,5 @@ function VirtualPlanningPokerDeck(deck){
         this.setupDeck(deck);
     };
     this.currentCard=0;
+    this.Draw();
 };
