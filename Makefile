@@ -16,7 +16,7 @@ $(1): $(1)/index.html $$(TARGET_RESOURCE_FILES) $$(RESOURCES)
 	cp $$< $$(BUILDDIR)
 	cp $$(TARGET_RESOURCE_FILES) $$(RESOURCES) $$(BUILDDIR)/resources
 $(1)-test: $$($(1)_SRC)
-	Gopen tst/index.html?module=$(1)
+	open tst/index.html?module=$(1)
 endef
 
 RESOURCES := resources/jquery.js
