@@ -14,6 +14,22 @@ function VirtualPlanningPokerDeck(deck){
         var cardFront=document.getElementById("front");
         cardFront.innerHTML=this.cards[this.currentCard];
     }
+    this.flickLeft=function() {
+        if (this.currentCard<(this.cards.length-1)) {
+            this.currentCard++;
+        } else {
+            this.currentCard=0;
+        }
+        this.Draw();
+    }
+    this.flickRight=function() {
+        if(this.currentCard>0) {
+            this.currentCard--;
+        } else {
+            this.currentCard=this.cards.length-1;
+        }
+        this.Draw();
+    }
     if (typeof deck == "string") {
         if (deck in Decks) {
             this.setupDeck(Decks[deck]);
