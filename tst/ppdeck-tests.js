@@ -47,3 +47,14 @@ test("Flick right", function() {
     equal(deck.currentCard,newCard,"cards flip over");
     equal(cardFrontElement.html(),deck.cards[newCard],"And card is updated.")
 });
+test("flip", function() {
+    var deck=new VirtualPlanningPokerDeck("reaktor");
+    equal(cardFrontElement.css("visibility"),"visible","Card front should be visible.");
+    equal(cardBackElement.css("visibility"),"hidden","Card back should be hidden.");
+    deck.Flip();
+    equal(cardFrontElement.css("visibility"),"hidden","Card front should be visible.");
+    equal(cardBackElement.css("visibility"),"visible","Card back should be hidden.");
+    deck.Flip();
+    equal(cardFrontElement.css("visibility"),"visible","Card front should be visible.");
+    equal(cardBackElement.css("visibility"),"hidden","Card back should be hidden.");
+});

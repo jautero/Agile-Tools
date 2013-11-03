@@ -37,6 +37,18 @@ function VirtualPlanningPokerDeck(deck){
     } else {
         this.setupDeck(deck);
     };
+    this.Flip=function () {
+        var hide,show;
+        if ($("#front").css("visibility")=="visible") {
+            show=$("#back");
+            hide=$("#front");
+        } else {
+            show=$("#front");
+            hide=$("#back");
+        };
+        show.css("visibility","visible");
+        hide.css("visibility","hidden");
+    };
     this.currentCard=0;
     this.Draw();
 };
