@@ -11,8 +11,8 @@ function VirtualPlanningPokerDeck(deck){
         this.cards=deckdata.cards;
     };
     this.Draw=function() {
-        var cardFront=document.getElementById("front");
-        cardFront.innerHTML=this.cards[this.currentCard];
+        var cardFront=$("#front");
+        cardFront.html(this.cards[this.currentCard]);
     }
     this.flickLeft=function() {
         if (this.currentCard<(this.cards.length-1)) {
