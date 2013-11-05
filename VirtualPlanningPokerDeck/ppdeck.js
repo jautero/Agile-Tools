@@ -1,6 +1,6 @@
 var Decks={
     standard: {
-        back: "https://www.dropbox.com/sh/eei6pverezsam0f/2b2pKJ3oEo/suttu.png"
+        back: "https://www.dropbox.com/sh/eei6pverezsam0f/2b2pKJ3oEo/suttu.png",
         cards: [" ","0","\u00BD","1","2","3","5","8","13","20","40","100","?","\u2615"]
     }
 }
