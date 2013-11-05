@@ -20,7 +20,9 @@ planning poker deck. He or she selects a card and shows it when voting.
 Planned features is syncing reveal of cards to external server or using
 motion sensor to do it (3 shakes?).
 
-Pocker deck is defined with background (image url) and list of card images.
-There is a list of predefined decks. In addition to a predefined deck name,
-you can use Javascript object or link to url that returns corresponding JSON.
-
+TDD State tracker
+-----------------
+This reports TDD with "familiar" red = unit test, green = implement, blue = refactor colors.
+It will update state based on current state and status of unit tests. In first implementation
+it assumes to be part of qunit test page. It will also store state in local store allowing 
+page reload and re-opening.
