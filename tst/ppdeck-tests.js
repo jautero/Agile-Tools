@@ -2,10 +2,10 @@ module("VirtualPlanningPokerDeck", {
     setup: function() {
         cardFrontElement = $("#front");
         cardBackElement = $("#back");
+        deck=new VirtualPlanningPokerDeck("standard");
     }
 });
 test("create deck",function(){
-   var deck=new VirtualPlanningPokerDeck("reaktor");
    equal(deck.cards.length,14,"reaktor deck has 14 cards");
    equal(deck.currentCard,0,"Current card is first card");
 });
@@ -14,7 +14,6 @@ test("create simple deck",function(){
     equal(deck.cards.length,4,"Deck does has four cards");
 });
 test("deck setup and draw",function(){
-    var deck=new VirtualPlanningPokerDeck("reaktor");
     equal(deck.currentCard,0,"Current card is first card");
     equal(cardFrontElement.html(),deck.cards[0],"Element front should contain first card.");
     equal(cardFrontElement.css("visibility"),"visible","Card front should be visible.");
@@ -25,7 +24,6 @@ test("deck setup and draw",function(){
 });
 
 test("Flick left", function() {
-    var deck=new VirtualPlanningPokerDeck("reaktor");
     for (i=0;i<deck.cards.length;i++) {
         var nextCard=i+1;
         if (nextCard==deck.cards.length)
@@ -37,7 +35,6 @@ test("Flick left", function() {
 });
 
 test("Flick right", function() {
-    var deck=new VirtualPlanningPokerDeck("reaktor");
     deck.currentCard=1;
     deck.flickRight();
     equal(deck.currentCard,0,"Current card is first card");
@@ -48,7 +45,6 @@ test("Flick right", function() {
     equal(cardFrontElement.html(),deck.cards[newCard],"And card is updated.")
 });
 test("flip", function() {
-    var deck=new VirtualPlanningPokerDeck("reaktor");
     equal(cardFrontElement.css("visibility"),"visible","Card front should be visible.");
     equal(cardBackElement.css("visibility"),"hidden","Card back should be hidden.");
     deck.Flip();
