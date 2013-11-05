@@ -29,6 +29,10 @@ VIRTUALPLANNINGPOKERDECK_RESOURCES = ppdeck.js ppdeck.css
 
 $(eval $(call subproject,VirtualPlanningPokerDeck))
 
+TDDSTATETRACKER_RESOURCES = tdd-state-tracker.js tdd-state-tracker.css
+
+$(eval $(call subproject,TDDStateTracker))
+
 buildall: $(PROJECTS)
 	
 testall: 
