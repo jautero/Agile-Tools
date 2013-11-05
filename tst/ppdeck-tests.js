@@ -8,6 +8,7 @@ module("VirtualPlanningPokerDeck", {
 test("create deck",function(){
    equal(deck.cards.length,14,"reaktor deck has 14 cards");
    equal(deck.currentCard,0,"Current card is first card");
+   equal(cardBackElement.css("background-image"),"url("+deck.back+")","Set deck background");
 });
 test("create simple deck",function(){
     var deck=new VirtualPlanningPokerDeck({back:"",cards:["1","2","3","4"]});
