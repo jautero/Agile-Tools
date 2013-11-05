@@ -15,3 +15,4 @@ test("Get current state", function() {
     tracker.mockResult=false;
     equal(tracker.initState(),TDDStates["implement"],"If it doesn't, fix unit tests.");
 });
+
