@@ -5,4 +5,8 @@ var TDDStates = {
 };
 
 function TDDStateTracker() {
+    this.initState=function() {
+        this.currentState=this.unitTestCheck()?"test":"implement";
+        return TDDStates[this.currentState];
+    };
 };
