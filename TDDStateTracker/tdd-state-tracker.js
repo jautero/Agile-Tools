@@ -10,4 +10,12 @@ function TDDStateTracker(unitTestCheck) {
         this.currentState=this.unitTestCheck()?"test":"implement";
         return TDDStates[this.currentState];
     };
+	this.update=function() {
+		if (this.unitTestCheck()) {
+			this.currentState=TDDStates[this.currentState].success
+		} else {
+			this.currentState=TDDStates[this.currentState].fail
+		}
+		return TDDStates[this.currentState];
+	}
 };
