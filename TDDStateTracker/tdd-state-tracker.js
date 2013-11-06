@@ -4,11 +4,15 @@ var TDDStates = {
     refactor:{color: "#0000FF", desc:"Refactor code while making sure that unit tests stay green", fail: "refactor", success:"test"},
 };
 
-function TDDStateTracker(unitTestCheck) {
+function TDDStateTracker(testElement,unitTestCheck) {
 	this.unitTestCheck=unitTestCheck;
+	this.testElement=testElement;
     this.initState=function() {
         this.currentState=this.unitTestCheck()?"test":"implement";
-        return TDDStates[this.currentState];
+		var stateObject = TDDStates[this.currentState];
+		testElement.text(stateObject.desc);
+		testElement.css("background-color",stateObject.color);
+        return stateObject;
     };
 	this.update=function() {
 		if (this.unitTestCheck()) {
