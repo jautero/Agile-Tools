@@ -18,10 +18,22 @@
   <script src="ppdeck-tests.js" type="text/javascript" charset="utf-8"></script>
   <script src="../TDDStateTracker/tdd-state-tracker.js" type="text/javascript" charset="utf-8"></script>
   <script src="tdd-state-tracker-tests.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function  () {
+	var QUnitTracker=new TDDStateTracker($("#TDDStateTracker"),function(){return this.QUnitResult;});
+	QUnitTracker.QUnitResult = true;
+	QUnitTracker.initState();
+	QUnit.done(function  (details) {
+		QUnitTracker.QUnitResult=(details.failed==0);
+		QUnitTracker.update();
+	});
+	});
+</script>
   <div id="testarea" style="display:none;">
       <div id="front"></div>
       <div id="back"></div>
 	<div id="test-tddtracker"></div>
   </div>
+<div id="TDDStateTracker"></div>
 </body>
 </html>
