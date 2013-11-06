@@ -1,7 +1,10 @@
-module("TDDStateTracker");
+module("TDDStateTracker",{
+	setup: function() {
+		tracker = new TDDStateTracker(mockCheck);
+	}
+});
 test("create tdd state tracker", function() {
     expect(0);
-    tracker = new TDDStateTracker();
 });
 
 function mockCheck () {
@@ -9,7 +12,6 @@ function mockCheck () {
 };
 
 test("Get current state", function() {
-    tracker = new TDDStateTracker(mockCheck);
     tracker.mockResult=true;
     equal(tracker.initState(),TDDStates["test"],"If everything works, write failing unit test next");
     tracker.mockResult=false;
@@ -17,7 +19,6 @@ test("Get current state", function() {
 });
 
 test("test - implement - refactor -cycle", function() {
-	tracker = new TDDStateTracker(mockCheck);
 	tracker.mockResult=true;
 	equal(tracker.initState(),TDDStates["test"],"init state to test state");
 	tracker.mockResult=false; 
