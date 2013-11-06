@@ -37,3 +37,17 @@ test("initState also updates element", function() {
 	equal(testElement.css("background-color"),dummy.css("background-color"),"Test element background color is state color");
 	equal(testElement.html(),TDDStates["test"].desc,"Test element contents is state description");
 });
+
+test("update state also updates element", function() {
+	tracker.mockResult=true;
+	equal(tracker.initState(),TDDStates["test"],"init state to test state");
+	var dummy = $("<div/>");
+	dummy.css("background-color",TDDStates["test"].color);
+	equal(testElement.css("background-color"),dummy.css("background-color"),"Test element background color is state color");
+	equal(testElement.html(),TDDStates["test"].desc,"Test element contents is state description");
+	tracker.mockResult=false;
+	equal(tracker.update(),TDDStates["implement"],"test fails -> implement state");
+	dummy.css("background-color",TDDStates["implement"].color);
+	equal(testElement.css("background-color"),dummy.css("background-color"),"Test element background color is state color");
+	equal(testElement.html(),TDDStates["implement"].desc,"Test element contents is state description");
+});

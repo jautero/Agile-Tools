@@ -20,6 +20,9 @@ function TDDStateTracker(testElement,unitTestCheck) {
 		} else {
 			this.currentState=TDDStates[this.currentState].fail
 		}
+		var stateObject = TDDStates[this.currentState];
+		testElement.text(stateObject.desc);
+		testElement.css("background-color",stateObject.color);		
 		return TDDStates[this.currentState];
 	}
 };
