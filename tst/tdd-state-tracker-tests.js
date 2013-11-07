@@ -1,7 +1,8 @@
 module("TDDStateTracker",{
 	setup: function() {
 		testElement = $("#test-tddtracker");
-		tracker = new TDDStateTracker(testElement,mockCheck);
+        testStore = {};
+		tracker = new TDDStateTracker(testElement,mockCheck,testStore);
 	}
 });
 test("create tdd state tracker", function() {
@@ -50,4 +51,16 @@ test("update state also updates element", function() {
 	dummy.css("background-color",TDDStates["implement"].color);
 	equal(testElement.css("background-color"),dummy.css("background-color"),"Test element background color is state color");
 	equal(testElement.html(),TDDStates["implement"].desc,"Test element contents is state description");
+});
+test("state is loaded from store", function() {
+   testStore.TDDState="refactor";
+   tracker.mockResult=true;
+   equal(tracker.initState(),TDDStates["refactor"],"initState loads from store"); 
+});
+test("state is stored to store after update",function () {
+    tracker.mockResult=false;
+    equal(tracker.initState(), TDDStates["implement"], "initState set current state to implement since tests fail.");
+    tracker.mockResult=true;
+    equal(tracker.update(), TDDStates["refactor"], "Next state is refactor");
+    equal(testStore.TDDState,"refactor", "New state is stored to store"); 
 });
