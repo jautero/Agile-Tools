@@ -20,7 +20,7 @@
   <script src="tdd-state-tracker-tests.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function  () {
-	var QUnitTracker=new TDDStateTracker($("#TDDStateTracker"),function(){return this.QUnitResult;});
+	var QUnitTracker=new TDDStateTracker($("#TDDStateTracker"),function(){return this.QUnitResult;},localStorage);
 	QUnitTracker.QUnitResult = true;
 	QUnitTracker.initState();
 	QUnit.done(function  (details) {
