@@ -36,3 +36,13 @@ test("Set sprint start date", function() {
 	testbacklogburner.startSprint("2013-10-08");
 	equal(testbacklogburner.startDate,"2013-10-08","Start date is set correctly");
 });
+
+test("You can delete hours",function(){
+	deepEqual(testbacklogburner.burnlist,[], "burn list is empty");
+	testbacklogburner.burnHours(2);
+	testbacklogburner.burnHours(4);
+	testbacklogburner.burnHours(2);
+	deepEqual(testbacklogburner.burnlist,[2,4,2], "burn list is updated");
+	testbacklogburner.unburn();
+	deepEqual(testbacklogburner.burnlist,[2,4], "last value is removed");
+});

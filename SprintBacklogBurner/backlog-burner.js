@@ -30,6 +30,9 @@ function SprintBacklogBurner() {
         } else {
             this.startDate=startDate;
         }
-    }
+    };
+	this.unburn=function() {
+		this.burnlist.pop();
+	}
 
 };
