@@ -46,3 +46,9 @@ test("You can delete hours",function(){
 	testbacklogburner.unburn();
 	deepEqual(testbacklogburner.burnlist,[2,4], "last value is removed");
 });
+
+test("deleting from empty list does nothing", function(){
+	deepEqual(testbacklogburner.burnlist,[], "burn list is empty at start");
+	testbacklogburner.unburn();
+	deepEqual(testbacklogburner.burnlist,[], "burn list is still empty");
+});
