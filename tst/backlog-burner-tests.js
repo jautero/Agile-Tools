@@ -1,6 +1,7 @@
 module("SprintBacklogBurner", {
 	setup: function() {
-		testbacklogburner = new SprintBacklogBurner;
+        burngorman = $("#burnarea");
+		testbacklogburner = new SprintBacklogBurner(burngorman);
 		testbacklogburner.setSprintSize(100);
 	}
 });
@@ -51,4 +52,9 @@ test("deleting from empty list does nothing", function(){
 	deepEqual(testbacklogburner.burnlist,[], "burn list is empty at start");
 	testbacklogburner.unburn();
 	deepEqual(testbacklogburner.burnlist,[], "burn list is still empty");
+});
+test("Burn hours updates burn page",function() {
+   equal(burngorman.html(),"","Burn page is empty");
+   testbacklogburner.burnHours(2);
+   equal(burngorman.html(),"<ul><li>2</li></ul><div>Total: 2</div>","Output list is updated");
 });
