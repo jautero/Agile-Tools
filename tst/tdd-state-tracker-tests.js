@@ -15,52 +15,46 @@ function mockCheck () {
 
 test("Get current state", function() {
     tracker.mockResult=true;
-    equal(tracker.initState(),TDDStates["test"],"If everything works, write failing unit test next");
+    tracker.initState();
+    equal(tracker.currentState,"test","If everything works, write failing unit test next");
     tracker.mockResult=false;
-    equal(tracker.initState(),TDDStates["implement"],"If it doesn't, fix unit tests.");
+    tracker.initState();
+    equal(tracker.currentState,"implement","If it doesn't, fix unit tests.");
 });
+
+function checkTDDState(testtracker, trackerelement, expectedstatename) {
+    var expectedState = TDDStates[expectedstatename];
+    equal(testtracker.currentState,expectedstatename,"tracker.currentState should be " + expectedstatename);
+    ok(trackerelement.hasClass(expectedState.className),"tracker should update element class to " + expectedState.className);
+    equal(trackerelement.html(),expectedState.desc,"tracker should update element content to \"" + expectedState.desc+"\".");
+};
 
 test("test - implement - refactor -cycle", function() {
 	tracker.mockResult=true;
-	equal(tracker.initState(),TDDStates["test"],"init state to test state");
+    tracker.initState();
+    checkTDDState(tracker,testElement,"test");
 	tracker.mockResult=false; 
-	equal(tracker.update(),TDDStates["implement"],"Test fails -> implement state");
+    tracker.update();
+    checkTDDState(tracker,testElement,"implement");
 	tracker.mockResult=true;
-	equal(tracker.update(),TDDStates["refactor"], "Test succeeds -> refactor state");
-	equal(tracker.update(),TDDStates["test"], "Tests still succeed -> back to test state");
+    tracker.update();
+    checkTDDState(tracker,testElement,"refactor");
+    tracker.update();
+    checkTDDState(tracker,testElement,"test");
 });
 
-test("initState also updates element", function() {
-	tracker.mockResult=true;
-	equal(tracker.initState(),TDDStates["test"],"init state to test state");
-	var dummy = $("<div/>");
-	dummy.css("background-color",TDDStates["test"].color);
-	equal(testElement.css("background-color"),dummy.css("background-color"),"Test element background color is state color");
-	equal(testElement.html(),TDDStates["test"].desc,"Test element contents is state description");
-});
-
-test("update state also updates element", function() {
-	tracker.mockResult=true;
-	equal(tracker.initState(),TDDStates["test"],"init state to test state");
-	var dummy = $("<div/>");
-	dummy.css("background-color",TDDStates["test"].color);
-	equal(testElement.css("background-color"),dummy.css("background-color"),"Test element background color is state color");
-	equal(testElement.html(),TDDStates["test"].desc,"Test element contents is state description");
-	tracker.mockResult=false;
-	equal(tracker.update(),TDDStates["implement"],"test fails -> implement state");
-	dummy.css("background-color",TDDStates["implement"].color);
-	equal(testElement.css("background-color"),dummy.css("background-color"),"Test element background color is state color");
-	equal(testElement.html(),TDDStates["implement"].desc,"Test element contents is state description");
-});
 test("state is loaded from store", function() {
    testStore.TDDState="refactor";
    tracker.mockResult=true;
-   equal(tracker.initState(),TDDStates["refactor"],"initState loads from store"); 
+   tracker.initState();
+   checkTDDState(tracker,testElement,"refactor");
 });
 test("state is stored to store after update",function () {
     tracker.mockResult=false;
-    equal(tracker.initState(), TDDStates["implement"], "initState set current state to implement since tests fail.");
+    tracker.initState();
+    checkTDDState(tracker,testElement,"implement");
     tracker.mockResult=true;
-    equal(tracker.update(), TDDStates["refactor"], "Next state is refactor");
+    tracker.update();
+    checkTDDState(tracker,testElement,"refactor");
     equal(testStore.TDDState,"refactor", "New state is stored to store"); 
 });

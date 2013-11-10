@@ -1,9 +1,14 @@
 var TDDStates = {
-    test: {color: "#FF0000", desc:"Develop failing unit test (not compiling is also failing)", fail: "implement", success: "test"},
-    implement: {color: "#00FF00", desc:"Write code that makes unit test pass (but no more)", fail: "implement", success:"refactor"},
-    refactor:{color: "#2b2baF", desc:"Refactor code while making sure that unit tests stay green", fail: "refactor", success:"test"},
+    test: {className: "tddstate-test", desc:"Develop failing unit test (not compiling is also failing)", fail: "implement", success: "test"},
+    implement: {className: "tddstate-implement", desc:"Write code that makes unit test pass (but no more)", fail: "implement", success:"refactor"},
+    refactor:{className: "tddstate-refactor", desc:"Refactor code while making sure that unit tests stay green", fail: "refactor", success:"test"},
 };
 
+function changeStateElement(stateElement, newState) {
+    var stateObject = TDDStates[newState];
+    stateElement.attr("class", stateObject.className);
+    stateElement.text(stateObject.desc);
+}
 function TDDStateTracker(testElement,unitTestCheck,store) {
 	this.unitTestCheck=unitTestCheck;
 	this.testElement=testElement;
@@ -14,12 +19,13 @@ function TDDStateTracker(testElement,unitTestCheck,store) {
         } else {
             this.currentState=this.unitTestCheck()?"test":"implement";
         }
-		var stateObject = TDDStates[this.currentState];
-		testElement.text(stateObject.desc);
-		testElement.css("background-color",stateObject.color);
-        return stateObject;
+		changeStateElement(this.testElement, this.currentState);
+        return TDDStates[this.currentState];
     };
 	this.update=function() {
+        if (this.timestamper) {
+            $.get(this.timestamper,function () {});
+        }
 		if (this.unitTestCheck()) {
 			this.currentState=TDDStates[this.currentState].success
 		} else {
@@ -28,9 +34,7 @@ function TDDStateTracker(testElement,unitTestCheck,store) {
         if (this.store) {
             this.store.TDDState=this.currentState;
         }
-		var stateObject = TDDStates[this.currentState];
-		testElement.text(stateObject.desc);
-		testElement.css("background-color",stateObject.color);		
+        changeStateElement(this.testElement, this.currentState);
 		return TDDStates[this.currentState];
 	}
 };
