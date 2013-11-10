@@ -1,6 +1,7 @@
-function SprintBacklogBurner() {
+function SprintBacklogBurner(burnareaelement) {
     this.size=0;
     this.burnlist=[];
+    this.burnarea=burnareaelement
     this.setSprintSize=function(size) {
         this.size=size;
     };
@@ -9,7 +10,25 @@ function SprintBacklogBurner() {
     };
     this.burnHours=function(amount) {
         this.burnlist.push(amount);
+        this.updateBurnPage();
     };
+    this.updateBurnPage=function () {
+        if (this.burnarea) {
+            this.burnarea.html("");
+            if (this.burnlist.length > 0) {
+                this.burnarea.append(generateList(this.burnlist,"burnlist"));
+                this.burnarea.append($("<div>",{class:"total"}).text("Total: "+this.burnListSum()));
+            }
+        }
+    };
+    this.burnListSum=function () {
+        var sum=0;
+        for (var i = this.burnlist.length - 1; i >= 0; i--) {
+            sum += this.burnlist[i];
+        }
+        return sum;
+    };
+
     this.commitHours=function() {
         var totalHours=0;
         for (index in this.burnlist) {
@@ -34,5 +53,14 @@ function SprintBacklogBurner() {
 	this.unburn=function() {
 		this.burnlist.pop();
 	}
-
+    this.updateBurnPage();
 };
+
+function generateList(items,className) {
+    var listElement=$("<ul>",{class:className});
+    for (var i = 0; i < items.length; i++) {
+        var listitem=$("<li>").text(items[i]);
+        listElement.append(listitem);
+    }
+    return listElement;
+}

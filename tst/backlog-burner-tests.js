@@ -53,8 +53,18 @@ test("deleting from empty list does nothing", function(){
 	testbacklogburner.unburn();
 	deepEqual(testbacklogburner.burnlist,[], "burn list is still empty");
 });
-test("Burn hours updates burn page",function() {
-   equal(burngorman.html(),"","Burn page is empty");
-   testbacklogburner.burnHours(2);
-   equal(burngorman.html(),"<ul><li>2</li></ul><div>Total: 2</div>","Output list is updated");
+test("Generate html representation of a list", function() {
+    equal(generateList([1,2],"test").prop("outerHTML"),"<ul class=\"test\"><li>1</li><li>2</li></ul>","burnlist matches spec.")
 });
+test("Sum empty burnlist",function(){
+   equal(testbacklogburner.burnListSum(),0,"empty list = 0");
+});
+test("Generate empty burn page",function () {
+    equal(burngorman.html(),"","Nothing burned");
+});
+
+test("Burn page with 1 burn", function () {
+    testbacklogburner.burnHours(2);
+    var testdiv=$("<div>").append(generateList([2],"burnlist")).append($("<div>",{class:"total"}).text("Total: 2"));
+    equal(burngorman.html(),testdiv.html(),"One item list and total div");
+})
