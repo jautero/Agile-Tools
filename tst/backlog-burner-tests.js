@@ -67,4 +67,11 @@ test("Burn page with 1 burn", function () {
     testbacklogburner.burnHours(2);
     var testdiv=$("<div>").append(generateList([2],"burnlist")).append($("<div>",{class:"total"}).text("Total: 2"));
     equal(burngorman.html(),testdiv.html(),"One item list and total div");
-})
+});
+
+test("Burn page with 2 burns", function () {
+    testbacklogburner.burnHours(2);
+    testbacklogburner.burnHours(4);
+    var testdiv=$("<div>").append(generateList([2,4],"burnlist")).append($("<div>",{class:"total"}).text("Total: 6"));
+    equal(burngorman.html(),testdiv.html(),"One item list and total div");
+});
