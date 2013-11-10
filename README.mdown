@@ -6,12 +6,16 @@ So far following tools have been planned
 
 Sprint Backlog Burner
 ---------------------
+*In theory*, people update the sprint backlog board as tasks get run. *In practice*,
+people update hours left on their task every day in the daily scrum. S(o)M(ebody)
+then updates sprint burndown chart. One way to do that is to write down how many hours 
+were reducted from (or added to) each task and sum them up together.
+
 This application is intended to make easier to update sprint burndown.
-At the start of the sprint total size of the backlog is given and 
-as team reports reductions from that in daily scrum, those are entered.
-Application sums up reductions and reports total hours burned and updates
-burndown status. One possible feature is also showing burndown charts.
-It should eventually also support per user story burndowns.
+You enter estimated size and sprint start and end dates at sprint planning.
+Then every daily scrum you record those changes in hours left and at the end of the 
+scrum update commit those changes to hour estimate. In the first phase app will do
+the sums and calculate hours left, but hopefully it will later have burndown charts, too.
 
 Virtual Planning Poker Deck
 ---------------------------
