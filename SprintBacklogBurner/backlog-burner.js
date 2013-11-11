@@ -13,6 +13,14 @@ function daysinMonth(year,month) {
     return 31;
 }
 
+function extendToTwo(value) {
+    if (value < 10) {
+        return "0" + value;
+    } else {
+        return value;
+    }
+}
+
 function addDays(startDate,days) {
     var splitDate=startDate.split("-");
     for (var i = splitDate.length - 1; i >= 0; i--) {
@@ -27,7 +35,7 @@ function addDays(startDate,days) {
             splitDate[0]++;
         }
     }
-    return splitDate.join("-");
+    return splitDate.map(extendToTwo).join("-");
 }
 
 function SprintBacklogBurner(burnareaelement) {

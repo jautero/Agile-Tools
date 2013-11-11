@@ -104,3 +104,11 @@ test("Check daysinMonth", function () {
     equal(daysinMonth(2000,2),29,"But 2000 was");
     
 });
+
+test("Check addDays",function () {
+    var startDate="2013-07-15"
+    equal(addDays(startDate,3),"2013-07-18","Simple addition");
+    equal(addDays(startDate,17),"2013-08-01","Start of next month");
+    equal(addDays(startDate,31),"2013-08-15","Full month");
+    equal(addDays(startDate,48),"2013-09-01","Start of September");
+});
