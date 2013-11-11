@@ -1,4 +1,4 @@
-var defaultSprintWeeks=4;
+var defaultSprintWeeks=4, daysinWeek=7, sprintstartday=1, sprintendday=5;
 
 function daysinMonth(year,month) {
     if (month==2) {
@@ -81,6 +81,9 @@ function SprintBacklogBurner(burnareaelement) {
         this.burnlist=[];
         return true;
     };
+    this.sprintinDays=function () {
+        return this.sprintWeeks*daysinWeek-(7-(sprintendday-sprintstartday));
+    }
     this.startSprint=function(startDate) {
         if (this.size<=0)
             throw "Sprint Backlog needs size before you can start sprint";
@@ -90,7 +93,7 @@ function SprintBacklogBurner(burnareaelement) {
         } else {
             this.startDate=startDate;
         }
-        this.endDate=addDays(this.startDate,7*this.sprintWeeks-3);
+        this.endDate=addDays(this.startDate,this.sprintinDays());
     };
 	this.unburn=function() {
 		this.burnlist.pop();
