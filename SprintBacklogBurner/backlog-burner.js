@@ -1,5 +1,8 @@
+var defaultSprintWeeks=4;
+
 function SprintBacklogBurner(burnareaelement) {
     this.size=0;
+	this.sprintWeeks=defaultSprintWeeks;
     this.burnlist=[];
     this.burnarea=burnareaelement
     this.setSprintSize=function(size) {

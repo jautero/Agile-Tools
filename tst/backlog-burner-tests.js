@@ -75,3 +75,7 @@ test("Burn page with 2 burns", function () {
     var testdiv=$("<div>").append(generateList([2,4],"burnlist")).append($("<div>",{class:"total"}).text("Total: 6"));
     equal(burngorman.html(),testdiv.html(),"One item list and total div");
 });
+
+test("Check sprint length", function() {
+	equal(testbacklogburner.sprintWeeks,4,"Sprint lasts 4 weeks");
+});
