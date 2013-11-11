@@ -1,5 +1,35 @@
 var defaultSprintWeeks=4;
 
+function daysinMonth(year,month) {
+    if (month==2) {
+        if (((year % 4) == 0 && (year % 100) != 0) || (year % 400) == 0) {
+            return 29;
+        }
+        return 28;
+    };
+    if (month==4 || month==6 || month==9 || month==11) {
+        return 30;
+    };
+    return 31;
+}
+
+function addDays(startDate,days) {
+    var splitDate=startDate.split("-");
+    for (var i = splitDate.length - 1; i >= 0; i--) {
+        splitDate[i]*=1; // Convert to integer
+    }
+    splitDate[2]+=days;
+    while (splitDate[2]>daysinMonth(splitDate[0],splitDate[1])) {
+        splitDate[2]-=daysinMonth(splitDate[0],splitDate[1]);
+        splitDate[1]++;
+        if (splitDate[1]>12) {
+            splitDate[1]=1;
+            splitDate[0]++;
+        }
+    }
+    return splitDate.join("-");
+}
+
 function SprintBacklogBurner(burnareaelement) {
     this.size=0;
 	this.sprintWeeks=defaultSprintWeeks;
@@ -52,6 +82,7 @@ function SprintBacklogBurner(burnareaelement) {
         } else {
             this.startDate=startDate;
         }
+        this.endDate=addDays(this.startDate,7*this.sprintWeeks-3);
     };
 	this.unburn=function() {
 		this.burnlist.pop();
@@ -66,4 +97,4 @@ function generateList(items,className) {
         listElement.append(listitem);
     }
     return listElement;
-}
+};

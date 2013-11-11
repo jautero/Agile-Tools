@@ -1,7 +1,7 @@
 Agile-Tools
 ===========
 
-Agile-Tools is a set of HTML5 tools for mobile devices. 
+Agile-Tools is a set of HTML5 tools for mobile devices.
 So far following tools have been planned
 
 Sprint Backlog Burner
