@@ -112,3 +112,12 @@ test("Check addDays",function () {
     equal(addDays(startDate,31),"2013-08-15","Full month");
     equal(addDays(startDate,48),"2013-09-01","Start of September");
 });
+test("Check dateDelta", function () {
+    equal(dateDelta("2013-01-01","2014-01-01"),365,"Normal year should have 365 days");
+    equal(dateDelta("2012-01-01","2013-01-01"),366,"Leap year should have 366 days ");
+})
+
+test("Check main sprint page",function () {
+    testbacklogburner.startSprint();
+    equal(testbacklogburner.daysLeft(),19,"Days left is 20 work days/sprint - first day");
+})

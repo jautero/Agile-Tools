@@ -1,8 +1,11 @@
 var defaultSprintWeeks=4, daysinWeek=7, sprintstartday=1, sprintendday=5;
 
+function isLeapYear(year) {
+    return (((year % 4) == 0 && (year % 100) != 0) || (year % 400) == 0);
+}
 function daysinMonth(year,month) {
     if (month==2) {
-        if (((year % 4) == 0 && (year % 100) != 0) || (year % 400) == 0) {
+        if (isLeapYear(year)) {
             return 29;
         }
         return 28;
@@ -38,6 +41,26 @@ function addDays(startDate,days) {
     return splitDate.map(extendToTwo).join("-");
 }
 
+function dateDelta(start,end) {
+    var splitStart=start.split("-");
+    for (var i = splitStart.length - 1; i >= 0; i--) {
+        splitStart[i]*=1;
+    }
+    var splitEnd=end.split("-");
+    for (var i = splitEnd.length - 1; i >= 0; i--) {
+        splitEnd[i]*=1
+    }
+    var days=0;
+    for (var curryear=splitStart[0]; curryear<splitEnd[0]; curryear++) {
+        if (isLeapYear(curryear)) {
+            days+=366;
+        } else {
+            days+=365;
+        }
+    }
+    return days;
+    
+}
 function SprintBacklogBurner(burnareaelement) {
     this.size=0;
 	this.sprintWeeks=defaultSprintWeeks;
@@ -97,7 +120,10 @@ function SprintBacklogBurner(burnareaelement) {
     };
 	this.unburn=function() {
 		this.burnlist.pop();
-	}
+	};
+    this.daysLeft=function () {
+        return 19
+    }
     this.updateBurnPage();
 };
 
