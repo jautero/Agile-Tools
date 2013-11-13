@@ -1,4 +1,5 @@
 # Standard Mac trash
 .DS_Store
-# Ignore build directory
+# Ignore build stuff
 build
+build.tgz
