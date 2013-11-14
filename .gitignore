@@ -3,3 +3,8 @@
 # Ignore build stuff
 build
 build.tgz
+# Ignore Python compile files
+*.pyc
+*.pyo
+# Ignore PyCharm files
+.idea
