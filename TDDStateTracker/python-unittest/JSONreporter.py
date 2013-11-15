@@ -6,5 +6,6 @@ __author__ = 'jautero'
 
 class JSONreporter:
     def createReport(self,testreport):
-        return json.dumps([])
+        testdata={"passed": True}
+        return json.dumps(testdata)
 
