@@ -1,10 +1,10 @@
 # JSONreporter.py
 #
 
-import unittest
+import unittest, json
 __author__ = 'jautero'
 
 class JSONreporter:
     def createReport(self,testreport):
-        return ""
+        return json.dumps([])
 

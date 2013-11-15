@@ -3,7 +3,7 @@
 # Copyright (c) 2013 Juha Autero
 #
 
-import unittest
+import unittest, json
 import JSONreporter
 
 class TestJSONreporter(unittest.TestCase):
@@ -11,5 +11,8 @@ class TestJSONreporter(unittest.TestCase):
         self.reporter=JSONreporter.JSONreporter()
         self.test_results=unittest.TestResult()
     def test_empty_results(self):
-        json=self.reporter.createReport(self.test_results)
-        self.assertIs(json,"")
+        jsondata=self.reporter.createReport(self.test_results)
+        self.assertEqual([], json.loads(jsondata), 'jsondata "%s" was not expected')
+        
+if '__main__' == __name__:
+    unittest.main()
