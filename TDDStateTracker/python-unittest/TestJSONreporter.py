@@ -11,8 +11,9 @@ class TestJSONreporter(unittest.TestCase):
         self.reporter=JSONreporter.JSONreporter()
         self.test_results=unittest.TestResult()
     def test_empty_results(self):
-        jsondata=self.reporter.createReport(self.test_results)
-        self.assertEqual([], json.loads(jsondata), 'jsondata "%s" was not expected')
+        jsonstring=self.reporter.createReport(self.test_results)
+        jsondata=json.loads(jsonstring)
+        self.assert_(jsondata["passed"], 'jsondata "passed" was not True: %s ' % jsondata[passed])
         
 if '__main__' == __name__:
     unittest.main()
