@@ -30,3 +30,7 @@ This reports TDD with "familiar" red = unit test, green = implement, blue = refa
 It will update state based on current state and status of unit tests. In first implementation
 it assumes to be part of qunit test page. It will also store state in local store allowing 
 page reload and re-opening.
+
+`python-unittest` has tools for using *TDD State Tracker* with Python unittest. `jsonreporter.py`
+generates Javascript file that contains unit test results and `index.html` includes that file 
+with `script` tag and presents test results along with *TDD State Tracker*.
