@@ -25,20 +25,9 @@ function extendToTwo(value) {
 }
 
 function addDays(startDate,days) {
-    var splitDate=startDate.split("-");
-    for (var i = splitDate.length - 1; i >= 0; i--) {
-        splitDate[i]*=1; // Convert to integer
-    }
-    splitDate[2]+=days;
-    while (splitDate[2]>daysinMonth(splitDate[0],splitDate[1])) {
-        splitDate[2]-=daysinMonth(splitDate[0],splitDate[1]);
-        splitDate[1]++;
-        if (splitDate[1]>12) {
-            splitDate[1]=1;
-            splitDate[0]++;
-        }
-    }
-    return splitDate.map(extendToTwo).join("-");
+    var d=new Date(startDate);
+    var result = new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()+days));
+    return result.toISOString().substring(0,10);
 };
 
 
