@@ -13,7 +13,7 @@ fixedDateHolidays=[
 {day:25,month:11}, // Christmas day
 {day:26,month:11} // Boxing Day
 ];
-easterRelatedHolidays=[-2,1,40];
+easterRelatedHolidays=[-2,1,39];
 function easterForYear (year) {
   var a = year % 19;
   var b = Math.floor(year / 100);
@@ -30,12 +30,7 @@ function easterForYear (year) {
   var n0 = (h + l + 7 * m + 114)
   var n = Math.floor(n0 / 31) - 1;
   var p = n0 % 31 + 1;
-  var ns = "0"+(n+1);
-  if (p<10) {
-      var date = new Date(year+"-"+ns+"-0"+p);
-  } else {
-      var date = new Date(year+"-"+ns+"-"+p);
-  }
+  var date = new Date(year,n,p);
   return date;
 }
 

@@ -87,21 +87,27 @@ test("Check sprint end date", function() {
 
 
 test("Check isWorkday",function () {
-    ok(isWorkday(new Date("2013-11-11")),"Regular Monday is workday")
-    ok(isWorkday(new Date("2013-11-12")),"Regular Tuesday is workday")
-    ok(isWorkday(new Date("2013-11-13")),"Regular Wednesday is workday")
-    ok(isWorkday(new Date("2013-11-14")),"Regular Thursday is workday")
-    ok(isWorkday(new Date("2013-11-15")),"Regular Friday is workday")
-    ok(!isWorkday(new Date("2013-11-16")),"Regular Saturday is not workday")
-    ok(!isWorkday(new Date("2013-11-17")),"Regular Sunday is not workday")
+    ok(isWorkday(new Date(2013,10,11)),"Regular Monday is workday")
+    ok(isWorkday(new Date(2013,10,12)),"Regular Tuesday is workday")
+    ok(isWorkday(new Date(2013,10,13)),"Regular Wednesday is workday")
+    ok(isWorkday(new Date(2013,10,14)),"Regular Thursday is workday")
+    ok(isWorkday(new Date(2013,10,15)),"Regular Friday is workday")
+    ok(!isWorkday(new Date(2013,10,16)),"Regular Saturday is not workday")
+    ok(!isWorkday(new Date(2013,10,17)),"Regular Sunday is not workday")
     // Christian Holidays (in Finland)
     // Kirkkolaki 4. luku §3 http://www.finlex.fi/fi/laki/ajantasa/1993/19931054#L4P3
-    ok(!isWorkday(new Date("2013-12-25")), "Christmas Day is not workday")
-    ok(!isWorkday(new Date("2013-12-26")), "Boxing Day is not workday")
-    ok(!isWorkday(new Date("2014-01-01")), "New Year is not workday")
-    ok(!isWorkday(new Date("2014-01-06")), "Epiphany is not workday")
-    ok(!isWorkday(new Date("2013-03-29")), "Good Friday 2013 was not workday")
-    ok(!isWorkday(new Date("2014-04-18")), "Good Friday 2014 is not workday")    
+    ok(!isWorkday(new Date(2013,11,25)), "Christmas Day is not workday")
+    ok(!isWorkday(new Date(2013,11,26)), "Boxing Day is not workday")
+    ok(!isWorkday(new Date(2014,0,1)), "New Year is not workday")
+    ok(!isWorkday(new Date(2014,0,6)), "Epiphany is not workday")
+    ok(!isWorkday(new Date(2013,2,29)), "Good Friday 2013 was not workday")
+    ok(!isWorkday(new Date(2014,3,18)), "Good Friday 2014 is not workday")
+    ok(!isWorkday(new Date(2013,3,1)), "Easter Monday 2013 was not workday")
+    ok(!isWorkday(new Date(2014,3,21)), "Easter Monday 2014 is not workday")
+    ok(!isWorkday(new Date(2013,4,9)), "Ascencion Day 2013 was not workday")
+    ok(!isWorkday(new Date(2014,4,29)), "Ascencion Day 2014 is not workday")
+
+   
 });
 
 test("Check addDays",function () {
