@@ -106,7 +106,15 @@ test("Check isWorkday",function () {
     ok(!isWorkday(new Date(2014,3,21)), "Easter Monday 2014 is not workday")
     ok(!isWorkday(new Date(2013,4,9)), "Ascencion Day 2013 was not workday")
     ok(!isWorkday(new Date(2014,4,29)), "Ascencion Day 2014 is not workday")
-
+    // All other Finnish Christian Holidays are on Saturdays or Sundays
+    // Other Finnish Holidays
+    ok(!isWorkday(new Date(2013,4,1)), "Vappu 2013 was not workday");
+    ok(!isWorkday(new Date(2013,11,6)), "Finnish Independence Day is not workday");
+    // Eves that are free 
+    ok(!isWorkday(new Date(2014,11,24)), "Christmas Eve 2014 is not workday")
+    ok(!isWorkday(new Date(2013,5,21)), "Midsummer Eve 2013 was not workday")
+    ok(!isWorkday(new Date(2014,5,20)), "Midsummer Eve 2014 is not workday")
+    
    
 });
 

@@ -10,6 +10,9 @@ function extendToTwo(value) {
 fixedDateHolidays=[
 {day:1,month:0}, // New year
 {day:6,month:0}, // Epiphany
+{day:1,month:4}, // Vappu
+{day:6,month:11}, // Independence day
+{day:24,month:11}, // Christmas Eve
 {day:25,month:11}, // Christmas day
 {day:26,month:11} // Boxing Day
 ];
@@ -36,6 +39,10 @@ function easterForYear (year) {
 
 function isWorkday(date) {
     if (date.getDay()==0 || date.getDay() > 5) {
+        return false;
+    }
+    if (date.getMonth() == 5 && date.getDay() == 5 && date.getDate() > 18 && date.getDate() < 26) {
+        // June Friday after 18th and before 26th
         return false;
     }
     for (var i = fixedDateHolidays.length - 1; i >= 0; i--) {
