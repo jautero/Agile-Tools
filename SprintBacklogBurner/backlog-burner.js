@@ -60,6 +60,10 @@ function isWorkday(date) {
     }
     return true;
 }
+function incrementDay(dateObject) {
+    dateObject.setDate(dateObject.getDate()+1);
+}
+
 function addDays(startDate,days) {
     var d=new Date(startDate);
     var result = new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()+days));
