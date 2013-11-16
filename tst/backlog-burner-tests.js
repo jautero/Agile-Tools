@@ -100,8 +100,8 @@ test("Check isWorkday",function () {
     ok(!isWorkday(new Date("2013-12-26")), "Boxing Day is not workday")
     ok(!isWorkday(new Date("2014-01-01")), "New Year is not workday")
     ok(!isWorkday(new Date("2014-01-06")), "Epiphany is not workday")
-    
-    
+    ok(!isWorkday(new Date("2013-03-29")), "Good Friday 2013 was not workday")
+    ok(!isWorkday(new Date("2014-04-18")), "Good Friday 2014 is not workday")    
 });
 
 test("Check addDays",function () {
