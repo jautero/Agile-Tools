@@ -39,28 +39,17 @@ function addDays(startDate,days) {
         }
     }
     return splitDate.map(extendToTwo).join("-");
-}
+};
+
 
 function dateDelta(start,end) {
-    var splitStart=start.split("-");
-    for (var i = splitStart.length - 1; i >= 0; i--) {
-        splitStart[i]*=1;
-    }
-    var splitEnd=end.split("-");
-    for (var i = splitEnd.length - 1; i >= 0; i--) {
-        splitEnd[i]*=1
-    }
-    var days=0;
-    for (var curryear=splitStart[0]; curryear<splitEnd[0]; curryear++) {
-        if (isLeapYear(curryear)) {
-            days+=366;
-        } else {
-            days+=365;
-        }
-    }
+    var dayInMilliseconds=24*3600*1000;
+    var dateStart=new Date(start);
+    var dateEnd=new Date(end);
+    var days=(dateEnd-dateStart)/dayInMilliseconds;
     return days;
-    
-}
+};
+
 function SprintBacklogBurner(burnareaelement) {
     this.size=0;
 	this.sprintWeeks=defaultSprintWeeks;
