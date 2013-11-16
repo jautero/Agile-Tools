@@ -85,23 +85,22 @@ test("Check sprint end date", function() {
     equal(testbacklogburner.endDate,"2013-11-15","Sprint ends on friday of 4th week");
 });
 
-test("Check daysinMonth", function () {
-    equal(daysinMonth(2013,3),31,"March has 31 days");
-    equal(daysinMonth(2014,4),30,"April has 30 days");
-    equal(daysinMonth(2015,5),31,"May has 31 days");
-    equal(daysinMonth(2014,6),30,"June has 30 days");
-    equal(daysinMonth(2015,7),31,"July has 31 days");
-    equal(daysinMonth(2013,8),31,"August has 31 days");
-    equal(daysinMonth(2014,9),30,"September has 30 days");
-    equal(daysinMonth(2015,10),31,"October has 31 days");
-    equal(daysinMonth(2014,11),30,"November has 30 days");
-    equal(daysinMonth(2015,12),31,"December has 31 days");
-    equal(daysinMonth(2015,1),31,"January has 31 days");
-    // Test February with non-leap year
-    equal(daysinMonth(2013,2),28,"February has 28 days");
-    equal(daysinMonth(2012,2),29,"February has 29 days on leap year");
-    equal(daysinMonth(1900,2),28,"1900 was not leap year");
-    equal(daysinMonth(2000,2),29,"But 2000 was");
+
+test("Check isWorkday",function () {
+    ok(isWorkday(new Date("2013-11-11")),"Regular Monday is workday")
+    ok(isWorkday(new Date("2013-11-12")),"Regular Tuesday is workday")
+    ok(isWorkday(new Date("2013-11-13")),"Regular Wednesday is workday")
+    ok(isWorkday(new Date("2013-11-14")),"Regular Thursday is workday")
+    ok(isWorkday(new Date("2013-11-15")),"Regular Friday is workday")
+    ok(!isWorkday(new Date("2013-11-16")),"Regular Saturday is not workday")
+    ok(!isWorkday(new Date("2013-11-17")),"Regular Sunday is not workday")
+    // Christian Holidays (in Finland)
+    // Kirkkolaki 4. luku §3 http://www.finlex.fi/fi/laki/ajantasa/1993/19931054#L4P3
+    ok(!isWorkday(new Date("2013-12-25")), "Christmas Day is not workday")
+    ok(!isWorkday(new Date("2013-12-26")), "Boxing Day is not workday")
+    ok(!isWorkday(new Date("2014-01-01")), "New Year is not workday")
+    ok(!isWorkday(new Date("2014-01-06")), "Epiphany is not workday")
+    
     
 });
 
@@ -112,14 +111,15 @@ test("Check addDays",function () {
     equal(addDays(startDate,31),"2013-08-15","Full month");
     equal(addDays(startDate,48),"2013-09-01","Start of September");
 });
-test("Check dateDelta", function () {
-    equal(dateDelta("2013-01-01","2014-01-01"),365,"Normal year should have 365 days");
-    equal(dateDelta("2012-01-01","2013-01-01"),366,"Leap year should have 366 days");
-    equal(dateDelta("2013-04-01","2013-10-01"),183,"Normal months within a year")
-    equal(dateDelta("2013-01-01","2013-01-15"),14,"Half month")
+test("Check workDays", function () {
+    equal(workDays("2013-10-21","2013-10-27"),5,"Normal work week has 5 days");
+    //equal(dateDelta("2012-01-01","2013-01-01"),366,"Leap year should have 366 days");
+    //equal(dateDelta("2013-04-01","2013-10-01"),183,"Normal months within a year")
+    //equal(dateDelta("2013-01-01","2013-01-15"),14,"Half month")
 });
 
 test("Check main sprint page",function () {
     testbacklogburner.startSprint();
+    equal(testbacklogburner.currentDate,testbacklogburner.startDate,"Sprint current date is start date");
     equal(testbacklogburner.daysLeft(),19,"Days left is 20 work days/sprint - first day");
 });

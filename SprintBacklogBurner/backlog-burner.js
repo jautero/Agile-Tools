@@ -1,21 +1,5 @@
 var defaultSprintWeeks=4, daysinWeek=7, sprintstartday=1, sprintendday=5;
 
-function isLeapYear(year) {
-    return (((year % 4) == 0 && (year % 100) != 0) || (year % 400) == 0);
-}
-function daysinMonth(year,month) {
-    if (month==2) {
-        if (isLeapYear(year)) {
-            return 29;
-        }
-        return 28;
-    };
-    if (month==4 || month==6 || month==9 || month==11) {
-        return 30;
-    };
-    return 31;
-}
-
 function extendToTwo(value) {
     if (value < 10) {
         return "0" + value;
@@ -23,27 +7,38 @@ function extendToTwo(value) {
         return value;
     }
 }
-
+fixedDateHolidays=[
+{day:1,month:0}, // New year
+{day:6,month:0}, // Epiphany
+{day:25,month:11}, // Christmas day
+{day:26,month:11} // Boxing Day
+];
+function isWorkday(date) {
+    if (date.getDay()==0 || date.getDay() > 5) {
+        return false;
+    }
+    for (var i = fixedDateHolidays.length - 1; i >= 0; i--) {
+        var holiday=fixedDateHolidays[i];
+        if (date.getDay()==holiday.day,date.getMonth()==holiday.month) {
+            return false;
+        }
+    }
+    return true;
+}
 function addDays(startDate,days) {
     var d=new Date(startDate);
     var result = new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()+days));
     return result.toISOString().substring(0,10);
 };
 
-
-function dateDelta(start,end) {
-    var dayInMilliseconds=24*3600*1000;
-    var dateStart=new Date(start);
-    var dateEnd=new Date(end);
-    var days=(dateEnd-dateStart)/dayInMilliseconds;
-    return days;
-};
-
+function workDays(star,end) {
+    return 5;
+}
 function SprintBacklogBurner(burnareaelement) {
     this.size=0;
 	this.sprintWeeks=defaultSprintWeeks;
     this.burnlist=[];
-    this.burnarea=burnareaelement
+    this.burnarea=burnareaelement;
     this.setSprintSize=function(size) {
         this.size=size;
     };
@@ -94,13 +89,14 @@ function SprintBacklogBurner(burnareaelement) {
         } else {
             this.startDate=startDate;
         }
+        this.currentDate=this.startDate;
         this.endDate=addDays(this.startDate,this.sprintinDays());
     };
 	this.unburn=function() {
 		this.burnlist.pop();
 	};
     this.daysLeft=function () {
-        return 19
+        return 19;
     }
     this.updateBurnPage();
 };
