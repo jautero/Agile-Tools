@@ -114,10 +114,12 @@ test("Check addDays",function () {
 });
 test("Check dateDelta", function () {
     equal(dateDelta("2013-01-01","2014-01-01"),365,"Normal year should have 365 days");
-    equal(dateDelta("2012-01-01","2013-01-01"),366,"Leap year should have 366 days ");
-})
+    equal(dateDelta("2012-01-01","2013-01-01"),366,"Leap year should have 366 days");
+    equal(dateDelta("2013-04-01","2013-10-01"),183,"Normal months within a year")
+    equal(dateDelta("2013-01-01","2013-01-15"),14,"Half month")
+});
 
 test("Check main sprint page",function () {
     testbacklogburner.startSprint();
     equal(testbacklogburner.daysLeft(),19,"Days left is 20 work days/sprint - first day");
-})
+});
