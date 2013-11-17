@@ -47,7 +47,7 @@ function isWorkday(date) {
     }
     for (var i = fixedDateHolidays.length - 1; i >= 0; i--) {
         var holiday=fixedDateHolidays[i];
-        if (date.getDay()==holiday.day,date.getMonth()==holiday.month) {
+        if ((date.getDate()==holiday.day) && (date.getMonth()==holiday.month)) {
             return false;
         }
     }
@@ -70,9 +70,27 @@ function addDays(startDate,days) {
     return result.toISOString().substring(0,10);
 };
 
-function workDays(star,end) {
-    return 5;
+function convertToDate(datestring) {
+    var splitDate=datestring.split("-")
+    var year=splitDate[0]*1
+    var month=(splitDate[1]*1)-1
+    var day=splitDate[2]*1
+    return new Date(year,month,day)
 }
+
+function workDays(start,end) {
+    var startDate=convertToDate(start);
+    var endDate=convertToDate(end);
+    var workdays=0;
+    while (startDate.getTime()<=endDate.getTime()) {
+        if (isWorkday(startDate)) {
+            workdays+=1;
+        }
+        incrementDay(startDate);
+    } 
+    return workdays;
+}
+
 function SprintBacklogBurner(burnareaelement) {
     this.size=0;
 	this.sprintWeeks=defaultSprintWeeks;

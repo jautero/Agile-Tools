@@ -114,6 +114,8 @@ test("Check isWorkday",function () {
     ok(!isWorkday(new Date(2014,11,24)), "Christmas Eve 2014 is not workday")
     ok(!isWorkday(new Date(2013,5,21)), "Midsummer Eve 2013 was not workday")
     ok(!isWorkday(new Date(2014,5,20)), "Midsummer Eve 2014 is not workday")
+    ok(isWorkday(new Date(2013,11,23)), "Monday December 23rd, 2013 is workday")
+    ok(isWorkday(new Date(2013,11,27)), "Friday December 27rd, 2013 is workday")
 });
 
 test("Increment day",function () {
@@ -140,9 +142,8 @@ test("Check addDays",function () {
 test("Check workDays", function () {
     equal(workDays("2013-10-21","2013-10-27"),5,"Normal work week has 5 days");
     equal(workDays("2013-09-29","2013-10-05"),5,"even if it ends in another month")
-    //equal(dateDelta("2012-01-01","2013-01-01"),366,"Leap year should have 366 days");
-    //equal(dateDelta("2013-04-01","2013-10-01"),183,"Normal months within a year")
-    //equal(dateDelta("2013-01-01","2013-01-15"),14,"Half month")
+    equal(workDays("2014-09-01","2014-09-30"),22,"September 2013 had 22 workdays")
+    equal(workDays("2013-12-23","2013-12-29"),2,"Christmas week 2013 has 2 workdays")
 });
 
 test("Check main sprint page",function () {
