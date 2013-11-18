@@ -34,3 +34,13 @@ page reload and re-opening.
 `python-unittest` has tools for using *TDD State Tracker* with Python unittest. `jsonreporter.py`
 generates Javascript file that contains unit test results and `index.html` includes that file 
 with `script` tag and presents test results along with *TDD State Tracker*.
+
+Work Breakdown Sampler
+----------------------
+In order to get more accurate measurements of work breakdown during sprints, this program
+will sample at specific intervals what you are doing and calculates based on that where 
+sprint time was spent.
+
+Main page displays statistics of how many samples belong to which category. It also has
+settings for removing and adding categories, setting polling interval and reseting statistics.
+Main page will pop up regular intervals window that has buttons for all categories.
