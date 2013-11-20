@@ -25,7 +25,7 @@
 $(document).ready(function  () {
 	var QUnitTracker=new TDDStateTracker($("#TDDStateTracker"),function(){return this.QUnitResult;},localStorage);
 	QUnitTracker.QUnitResult = true;
-    QUnitTracker.timestamper="http://jautero.net/AgileToolstracker";
+    QUnitTracker.timestamper="http://jautero.net/TimeStampers/AgileTools";
 	QUnitTracker.initState();
 	QUnit.done(function  (details) {
 		QUnitTracker.QUnitResult=(details.failed==0);

@@ -16,3 +16,7 @@ test("test_three_samples",function () {
     equal(WBSdata.samples.test2,1,"samples of test2 should be 1 and not "+WBSdata.samples.test2);
     equal(WBSdata.total,3,"total should be 3 and not "+WBSdata.total);    
 });
+
+test("test_setup", function () {
+    setup();
+})
