@@ -12,7 +12,7 @@ function VirtualPlanningPokerDeck(deck){
     };
     this.Draw=function() {
         var cardFront=$("#front");
-        cardFront.html(this.cards[this.currentCard]);
+        cardFront.text(this.cards[this.currentCard]);
         var cardBack=$("#back");
         cardBack.css("background-image","url("+this.back+")");
     }

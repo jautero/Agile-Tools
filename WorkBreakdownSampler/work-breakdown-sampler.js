@@ -7,3 +7,7 @@ function sample(category) {
     WBSdata.samples[category]++;
     WBSdata.total++;
 }
+
+function setup() {
+    
+}

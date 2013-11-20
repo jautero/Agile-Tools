@@ -19,4 +19,5 @@ test("test_three_samples",function () {
 
 test("test_setup", function () {
     setup();
+    expect(0);
 })

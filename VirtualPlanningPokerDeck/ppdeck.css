@@ -1,2 +1,10 @@
-div#front {visibility:visible;}
-div#back {visibility:hidden;}
+div#front {
+    height:400px;
+    width:200px;
+    visibility:visible;
+}
+div#back {
+    height:400px;
+    width:200px;
+    visibility:hidden;
+}

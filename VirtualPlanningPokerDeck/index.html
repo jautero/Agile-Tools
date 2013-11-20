@@ -3,9 +3,14 @@
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>Virtual Planning Poker Deck</title>
-    <link rel="stylesheet" href="resources/virtual-planning-poker-deck.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="resources/ppdeck.css" type="text/css" media="screen" title="no title" charset="utf-8">
     <script src="resources/jquery.js" type="text/javascript" charset="utf-8"></script>
-    <script src="resources/virtual-planning-poker-deck.js" type="text/javascript" charset="utf-8"></script>
+    <script src="resources/ppdeck.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+    var deck=new VirtualPlanningPokerDeck("standard");
+    $("#front").css("visibility","visible");
+    $("#back").css("visibility","hidden");
+    </script>
 </head>
 <body id="index">
     <div id="front"></div>
