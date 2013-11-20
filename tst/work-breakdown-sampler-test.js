@@ -1,6 +1,6 @@
 module("WorkBreakdownSampler", {
     setup: function () {
-    WBSdata={samples:{},total:0};
+    WBSdata={categories:["test1","test2","test3"],samples:{test1:0,test2:0,test3:0},total:0};
 }});
 test("test_sample",function () {
     sample("test1");
@@ -17,7 +17,9 @@ test("test_three_samples",function () {
     equal(WBSdata.total,3,"total should be 3 and not "+WBSdata.total);    
 });
 
-test("test_setup", function () {
+test("test_setup",function () {
     setup();
-    expect(0);
+    var statstable=$("#WBSStats");
+    var tablerows=statstable.toArray("<tr>").length;
+    equal(tablerows,3,"Table should have 3 rows");
 })
