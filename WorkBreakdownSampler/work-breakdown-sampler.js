@@ -34,3 +34,17 @@ function updateStats() {
 function setup() {
     updateStats();
 }
+
+function insert_button(contentElement,category)
+{
+    var button=$("<button>");
+    button.attr("onclick","opener.sample('"+category+"');");
+    button.text(category);
+    contentElement.append(button);
+}
+
+function fill_popup(contentElement) {
+    for (var i = WBSdata.categories.length - 1; i >= 0; i--) {
+        insert_button(contentElement,WBSdata.categories[i]);
+    }
+}

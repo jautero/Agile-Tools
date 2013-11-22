@@ -23,3 +23,21 @@ test("test_setup",function () {
     var tablerows=statstable.find("tr").toArray();
     equal(tablerows.length,4,"Table should have 3 rows");
 });
+
+/*
+test("test_popup_content", function() {
+    var testdiv=$("<div>");
+    fill_popup(testdiv);
+    var buttons=testdiv.find("button").toArray();
+    equal(buttons.length,3,"There should be 3 buttons");
+});
+*/
+
+function get_button_text(category) {
+    return "<button onclick=\"opener.sample('"+category+"');\">"+category+"</button>";
+}
+test("test_insert_button", function () {
+    var testdiv=$("<div>")
+    insert_button(testdiv,"test");
+    equal(testdiv.html(),get_button_text("test"));
+});
