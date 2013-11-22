@@ -13,6 +13,7 @@ function getCategoryStats(category) {
     var percentage=total?count/total:0;
     return percentage.toFixed(1)+"% ( "+count+" / "+total+" )";
 }
+
 function updateStatsRow(statsTable,category) {
     var tablerow=statsTable.get("#"+category);
     if (tablerow == undefined) {
@@ -35,16 +36,20 @@ function setup() {
     updateStats();
 }
 
-function insert_button(contentElement,category)
+function insert_button(contentElement,category,prepend)
 {
     var button=$("<button>");
     button.attr("onclick","opener.sample('"+category+"');");
     button.text(category);
-    contentElement.append(button);
+    if (prepend) {
+        contentElement.prepend(button);
+    } else {
+        contentElement.append(button);
+    }
 }
 
 function fill_popup(contentElement) {
     for (var i = WBSdata.categories.length - 1; i >= 0; i--) {
-        insert_button(contentElement,WBSdata.categories[i]);
+        insert_button(contentElement,WBSdata.categories[i],true);
     }
 }
