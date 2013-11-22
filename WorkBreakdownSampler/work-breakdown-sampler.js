@@ -8,7 +8,10 @@ function sample(category) {
     WBSdata.total++;
 }
 function getCategoryStats(category) {
-    return (WBSdata.samples[category]/WBSdata.total).toFixed(1)+"% ("+WBSdata.samples[category]+"/"+WBSdata.total+")";
+    var count=WBSdata.samples[category];
+    var total=WBSdata.total;
+    var percentage=total?count/total:0;
+    return percentage.toFixed(1)+"% ( "+count+" / "+total+" )";
 }
 function updateStatsRow(statsTable,category) {
     var tablerow=statsTable.get("#"+category);
@@ -16,9 +19,9 @@ function updateStatsRow(statsTable,category) {
         tablerow=$("<tr>");
         tablerow.attr("id",category);
         tablerow.html("<td class=category>"+category+"</td><td class=stats></td>");
-        statsTable.get("tr:last").before(tablerow);
+        statsTable.find("tr:last").before(tablerow);
     }
-    tablewrow.get(td.stats).text(getCategoryStats(category));
+    tablerow.find("td.stats").text(getCategoryStats(category));
 }
 
 function updateStats() {

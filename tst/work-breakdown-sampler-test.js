@@ -20,6 +20,6 @@ test("test_three_samples",function () {
 test("test_setup",function () {
     setup();
     var statstable=$("#WBSStats");
-    var tablerows=statstable.toArray("<tr>").length;
-    equal(tablerows,3,"Table should have 3 rows");
-})
+    var tablerows=statstable.find("tr").toArray();
+    equal(tablerows.length,4,"Table should have 3 rows");
+});
