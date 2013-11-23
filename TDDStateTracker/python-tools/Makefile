@@ -22,4 +22,5 @@ RESOURCE_FILES += resources/tdd-state-tracker.css
 build: $(RESOURCE_FILES)
 
 tests: build
-	open index.html
+	python TestJSONReporter.py
+	#open index.html
