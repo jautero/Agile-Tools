@@ -14,6 +14,11 @@ class TestJSONreporter(unittest.TestCase):
         jsonstring=self.reporter.createReport(self.test_results)
         jsondata=json.loads(jsonstring)
         self.assert_(jsondata["passed"], 'jsondata "passed" was not True: %s ' % jsondata["passed"])
+    def test_one_passed_test(self):
+        self.test_results.addSuccess("Passing Test")
+        jsonstring=self.reporter.createReport(self.test_results)
+        jsondata=json.loads(jsonstring)
+        self.assert_(jsondata["passed"], 'jsondata "passed" was not True: %s ' % jsondata["passed"])
         
 if '__main__' == __name__:
     unittest.main()
