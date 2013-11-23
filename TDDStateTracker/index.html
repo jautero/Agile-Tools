@@ -9,6 +9,7 @@
 </head>
 <body>
 	<script type="text/javascript" charset="utf-8">
+	$(document).ready(function () {
 		function testsPassed () {
 			// Function that checks unittest results and returns true if they passed.
 			// Just pass always for now.
@@ -16,6 +17,7 @@
 		}
 		var tracker=new TDDStateTracker($("#tdd-state"), testsPassed, localStorage);
 		tracker.update();
+	});
 	</script>
 	<div id="tdd-state">	    
 	</div>
