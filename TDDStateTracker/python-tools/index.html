@@ -2,14 +2,22 @@
 <html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title>Unit test report</title>
+	<title>TDDStateTracker</title>
 	<link rel="stylesheet" href="resources/tdd-state-tracker.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	<script src="resources/jquery.js" type="text/javascript" charset="utf-8"></script>
 	<script src="resources/tdd-state-tracker.js" type="text/javascript" charset="utf-8"></script>
 </head>
-<body id="" onload="">
+<body>
+	<script type="text/javascript" charset="utf-8">
+		function testsPassed () {
+			// Function that checks unittest results and returns true if they passed.
+			// Just pass always for now.
+			return true;
+		}
+		var tracker=new TDDStateTracker($("#tdd-state"), testsPassed, localStorage);
+		tracker.update();
+	</script>
 	<div id="report">
-		
 	</div>
 	<div id="tdd-state">	    
 	</div>
