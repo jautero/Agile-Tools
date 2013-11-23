@@ -36,5 +36,19 @@ function TDDStateTracker(testElement,unitTestCheck,store) {
         }
         changeStateElement(this.testElement, this.currentState);
 		return TDDStates[this.currentState];
-	}
+	};
+	this.current_time=function() {
+		return Math.floor(new Date().getTime()/1000);
+	};
+	this.get_cycle_time=function () {
+		var time_delta;
+		var timestamp=this.current_time();
+		if (this.store.timestamp) {
+			time_delta=timestamp-this.store.timestamp
+		} else {
+			time_delta=0;
+		}
+		this.store.timestamp=timestamp;
+		return time_delta;
+	};
 };

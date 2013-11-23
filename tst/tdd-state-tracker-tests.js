@@ -58,3 +58,34 @@ test("state is stored to store after update",function () {
     checkTDDState(tracker,testElement,"refactor");
     equal(testStore.TDDState,"refactor", "New state is stored to store"); 
 });
+
+test("Test current_time function", function () {
+	var current_time=Math.floor(new Date().getTime()/1000);
+	equal(tracker.current_time(),current_time,"current_time() returns current time to the second.");
+});
+
+module("TDDStateTracker time tests",{
+	setup: function() {
+		testElement = $("#test-tddtracker");
+        testStore = {};
+		tracker = new TDDStateTracker(testElement,mockCheck,testStore);
+		tracker.current_time=function () {
+			return 93224109; // December 14, 1972, 22:54:37 UTC
+		};
+	}
+});
+
+test("Without stored timestamp get_cycle_time should return 0.", function () {
+	equal(tracker.get_cycle_time(),0,"Check that get_cycle_time() returns 0.");
+});
+
+test("get_cycle_time should update timestamp.", function  () {
+	testStore.timestamp=0;
+	equal(tracker.get_cycle_time(),0,"Check that get_cycle_time() returns 0.");
+	equal(testStore.timestamp,93224109,"Timestamp is updated");
+});
+test("get_cycle_time should return time elapsed from stored timestamp.", function  () {
+	testStore.timestamp=93224000;
+	equal(tracker.get_cycle_time(),109,"Check that get_cycle_time() returns 109.");
+	equal(testStore.timestamp,93224109,"Timestamp is updated");
+})
