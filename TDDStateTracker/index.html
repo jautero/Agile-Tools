@@ -7,7 +7,16 @@
 	<script src="resources/jquery.js" type="text/javascript" charset="utf-8"></script>
 	<script src="resources/tdd-state-tracker.js" type="text/javascript" charset="utf-8"></script>
 </head>
-<body id="" onload="">
+<body>
+	<script type="text/javascript" charset="utf-8">
+		function testsPassed () {
+			// Function that checks unittest results and returns true if they passed.
+			// Just pass always for now.
+			return true;
+		}
+		var tracker=new TDDStateTracker($("#tdd-state"), testsPassed, localStorage);
+		tracker.update();
+	</script>
 	<div id="tdd-state">	    
 	</div>
 </body>
