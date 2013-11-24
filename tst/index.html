@@ -29,7 +29,11 @@ $(document).ready(function  () {
 	QUnitTracker.initState();
 	QUnit.done(function  (details) {
 		QUnitTracker.QUnitResult=(details.failed==0);
+        var oldstate=QUnitTracker.currentState;
 		QUnitTracker.update();
+        if (QUnitTracker.currentState=="test" && oldstate != "test") {
+            QUnitTracker.update_cycle_time();
+        }
 	});
 	});
 </script>

@@ -123,3 +123,15 @@ test("Test update_cycle_time text at the end of exisiting text", function () {
     equal(testElement.text(),"this is a test (latest cycle: 30 seconds, average: 30 seconds)","element is updated with cycle info")
     
 })
+test("Test update_with_cycle_time when not in update state", function () {
+    tracker.currentState="implement";
+    testStore.average=30;
+    testStore.cycles=4;
+    testStore.timestamp=93224000;
+    tracker.mockResult=true;
+    tracker.update_with_cycle_time("test");
+    checkTDDState(tracker,testElement,"refactor");
+	equal(testStore.timestamp,93224000,"Timestamp is not updated");
+    equal(testStore.cycles,4,"Cycle count is not updated");
+    equal(testStore.average,30,"Average is the same");
+})

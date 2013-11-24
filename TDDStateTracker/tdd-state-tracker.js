@@ -55,23 +55,28 @@ function TDDStateTracker(stateElement,unitTestCheck,store) {
         var cycle_time=this.get_cycle_time();
         var count=this.store.cycles;
         var average=this.store.average;
-        if (average>0) {
-            if (count>0) {
-                average=(count*average+cycle_time)/(count+1)
+        if (cycle_time>0) {
+            if (average>0) {
+                if (count>0) {
+                    average=(count*average+cycle_time)/(count+1)
+                } else {
+                    average=(average+cycle_time)/2
+                };
+                count++;
             } else {
-                average=(average+cycle_time)/2
+                average=cycle_time;
+                count=1;
             };
-            count++;
-        } else {
-            average=cycle_time;
-            count=1;
-        };
-        var old_text=this.stateElement.text();
-        if (old_text != "" ) {
-            old_text += " ";
-        };
-        this.stateElement.text(old_text+"(latest cycle: "+cycle_time+" seconds, average: "+average+" seconds)");
-        this.store.cycles=count;
-        this.store.average=average;
+            var old_text=this.stateElement.text();
+            if (old_text != "" ) {
+                old_text += " ";
+            };
+            this.stateElement.text(old_text+"(latest cycle: "+cycle_time+" seconds, average: "+average+" seconds)");
+            this.store.cycles=count;
+            this.store.average=average;
+        }
+    }
+    this.update_with_cycle_time=function(cycleState) {
+        this.update();
     }
 };
