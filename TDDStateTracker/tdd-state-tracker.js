@@ -77,8 +77,9 @@ function TDDStateTracker(stateElement,unitTestCheck,store) {
         }
     }
     this.update_with_cycle_time=function(cycleState) {
+        var previousState=this.currentState;
         this.update();
-        if (this.currentState==cycleState) {
+        if (this.currentState==cycleState && previousState != this.currentState) {
             this.update_cycle_time();
         }
     }

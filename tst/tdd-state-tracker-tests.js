@@ -152,3 +152,15 @@ test("Test update_with_cycle_time when moving to update state", function () {
     equal(testStore.average,30,"Average is the same");
 })
 
+test("Test update_with_cycle_time when staying in update state", function () {
+    tracker.currentState="test";
+    testStore.average=30;
+    testStore.cycles=4;
+    testStore.timestamp=93224000;
+    tracker.mockResult=true
+    tracker.update_with_cycle_time("test");
+    checkTDDState(tracker,testElement,"test");
+	equal(testStore.timestamp,93224000,"Timestamp is not updated");
+    equal(testStore.cycles,4,"Cycle count is not updated");
+    equal(testStore.average,30,"Average is the same");    
+})
