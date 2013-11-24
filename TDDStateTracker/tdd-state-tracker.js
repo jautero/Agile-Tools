@@ -9,9 +9,9 @@ function changeStateElement(stateElement, newState) {
     stateElement.attr("class", stateObject.className);
     stateElement.text(stateObject.desc);
 }
-function TDDStateTracker(testElement,unitTestCheck,store) {
+function TDDStateTracker(stateElement,unitTestCheck,store) {
 	this.unitTestCheck=unitTestCheck;
-	this.testElement=testElement;
+	this.stateElement=stateElement;
     this.store=store;
     this.initState=function() {
         if (this.store && this.store.TDDState) {
@@ -19,7 +19,7 @@ function TDDStateTracker(testElement,unitTestCheck,store) {
         } else {
             this.currentState=this.unitTestCheck()?"test":"implement";
         }
-		changeStateElement(this.testElement, this.currentState);
+		changeStateElement(this.stateElement, this.currentState);
         return TDDStates[this.currentState];
     };
 	this.update=function() {
@@ -34,7 +34,7 @@ function TDDStateTracker(testElement,unitTestCheck,store) {
         if (this.store) {
             this.store.TDDState=this.currentState;
         }
-        changeStateElement(this.testElement, this.currentState);
+        changeStateElement(this.stateElement, this.currentState);
 		return TDDStates[this.currentState];
 	};
 	this.current_time=function() {
@@ -51,4 +51,27 @@ function TDDStateTracker(testElement,unitTestCheck,store) {
 		this.store.timestamp=timestamp;
 		return time_delta;
 	};
+    this.update_cycle_time=function () {
+        var cycle_time=this.get_cycle_time();
+        var count=this.store.cycles;
+        var average=this.store.average;
+        if (average>0) {
+            if (count>0) {
+                average=(count*average+cycle_time)/(count+1)
+            } else {
+                average=(average+cycle_time)/2
+            };
+            count++;
+        } else {
+            average=cycle_time;
+            count=1;
+        };
+        var old_text=this.stateElement.text();
+        if (old_text != "" ) {
+            old_text += " ";
+        };
+        this.stateElement.text(old_text+"(latest cycle: "+cycle_time+" seconds, average: "+average+" seconds)");
+        this.store.cycles=count;
+        this.store.average=average;
+    }
 };
