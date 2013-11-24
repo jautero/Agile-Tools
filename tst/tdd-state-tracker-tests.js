@@ -135,3 +135,20 @@ test("Test update_with_cycle_time when not in update state", function () {
     equal(testStore.cycles,4,"Cycle count is not updated");
     equal(testStore.average,30,"Average is the same");
 })
+
+test("Test update_with_cycle_time when moving to update state", function () {
+    tracker.currentState="refactor";
+    testStore.average=30;
+    testStore.cycles=4;
+    testStore.timestamp=93224109-30;
+    tracker.mockResult=true;
+    tracker.update_with_cycle_time("test");
+    var expectedState = TDDStates["test"];
+    equal(tracker.currentState,"test","tracker.currentState should be " + "test");
+    ok(testElement.hasClass(expectedState.className),"tracker should update element class to " + expectedState.className);
+    equal(testElement.text(),expectedState.desc+" (latest cycle: 30 seconds, average: 30 seconds)","tracker did not correctly update content.");
+	equal(testStore.timestamp,93224109,"Timestamp is updated");
+    equal(testStore.cycles,5,"Cycle count is  updated");
+    equal(testStore.average,30,"Average is the same");
+})
+
