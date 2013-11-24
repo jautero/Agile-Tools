@@ -90,6 +90,13 @@ test("get_cycle_time should return time elapsed from stored timestamp.", functio
 	equal(testStore.timestamp,93224109,"Timestamp is updated");
 })
 
+test("Test update_cycle_time without average or cycles", function () {
+    testStore.timestamp=93224000;
+    tracker.update_cycle_time();
+    equal(testStore.timestamp,93224109,"Timestamp is updated");
+    equal(testStore.cycles,1,"First cycle");
+    equal(testStore.average,109,"Average is cycle_time/1");
+})
 function cycle_time_calculations_test() {
     testStore.average=30;
     testStore.cycles=4;
@@ -100,17 +107,17 @@ function cycle_time_calculations_test() {
     equal(testStore.average,30,"Average is the same");
 };
 
-test("Test update cycle_time calculations", function () {
+test("Test update_cycle_time calculations", function () {
     cycle_time_calculations_test();
 })
 
-test("Test update cycle_time text", function() {
+test("Test update_cycle_time text", function() {
     testElement.text("");
     cycle_time_calculations_test();
     equal(testElement.text(),"(latest cycle: 30 seconds, average: 30 seconds)","element is updated with cycle info")
 });
 
-test("Test update cycle_time text at the end of exisiting text", function () {
+test("Test update_cycle_time text at the end of exisiting text", function () {
     testElement.text("this is a test");
     cycle_time_calculations_test();
     equal(testElement.text(),"this is a test (latest cycle: 30 seconds, average: 30 seconds)","element is updated with cycle info")
