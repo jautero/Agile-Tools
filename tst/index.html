@@ -36,6 +36,10 @@ $(document).ready(function  () {
         }
 	});
 	});
+    function zero_average() {
+        localStorage.average=0;
+        localStorage.cycles=0;
+    }
 </script>
   <div id="testarea" style="display:none;">
       <div id="front"></div>
@@ -43,9 +47,10 @@ $(document).ready(function  () {
 	<div id="test-tddtracker"></div>
     <div id="burnarea"></div>
     <table border="0" id="WBSStats">
-        <tr><td></td></tr>
+        <tr><td><input type="text" name="categoryname" value="" id="categoryname"></td><td><button onclick="insert_category();">Add Category</button></td></tr>
     </table>
   </div>
 <div id="TDDStateTracker"></div>
+<button onclick="zero_average()">Zero Average</button>
 </body>
 </html>

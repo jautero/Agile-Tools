@@ -39,7 +39,7 @@ function setup() {
 function insert_button(contentElement,category,prepend)
 {
     var button=$("<button>");
-    button.attr("onclick","opener.sample('"+category+"');");
+    button.attr("onclick","opener.sample('"+category+"');window.close();");
     button.text(category);
     if (prepend) {
         contentElement.prepend(button);
@@ -52,4 +52,10 @@ function fill_popup(contentElement) {
     for (var i = WBSdata.categories.length - 1; i >= 0; i--) {
         insert_button(contentElement,WBSdata.categories[i],true);
     }
+}
+
+function insert_category() {
+    var new_category=$("#categoryname").val();
+    WBSdata.categories.push(new_category);
+    WBSdata.samples[new_category]=0;
 }

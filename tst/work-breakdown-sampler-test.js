@@ -25,7 +25,7 @@ test("test_setup",function () {
 });
 
 function get_button_text(category) {
-    return "<button onclick=\"opener.sample('"+category+"');\">"+category+"</button>";
+    return "<button onclick=\"opener.sample('"+category+"');window.close();\">"+category+"</button>";
 }
 test("test_insert_button", function () {
     var testdiv=$("<div>")
@@ -41,7 +41,15 @@ test("test_popup_content", function() {
     for (var i = buttons.length - 1; i >= 0; i--) {
         var button=$(buttons[i]);        
         var category="test"+(i+1);
-        equal(button.attr("onclick"),"opener.sample('"+category+"');");
-        equal(button.text(),category);
+        equal(button[0].outerHTML,get_button_text(category),"HTML should be button text.");
     }
 });
+
+test("test_insert_category", function () {
+    var newcategoryname=$("#categoryname");
+    newcategoryname.val("test4");
+    insert_category();
+    equal(WBSdata.categories.length,4,"New category added");
+    equal(WBSdata.categories[3],"test4","It is added last with correct name");
+    equal(WBSdata.samples["test4"],0,"It has no samples.");
+})
