@@ -33,6 +33,10 @@ TDDSTATETRACKER_RESOURCES = tdd-state-tracker.js tdd-state-tracker.css
 
 $(eval $(call subproject,TDDStateTracker))
 
+WORKBREAKDOWNSAMPLER_RESOURCES = work-breakdown-sampler.js
+
+$(eval $(call subproject,WorkBreakdownSampler))
+
 buildall: $(PROJECTS)
 	
 testall: 
