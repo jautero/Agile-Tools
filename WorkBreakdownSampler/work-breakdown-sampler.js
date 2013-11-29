@@ -58,4 +58,5 @@ function insert_category() {
     var new_category=$("#categoryname").val();
     WBSdata.categories.push(new_category);
     WBSdata.samples[new_category]=0;
+    updateStats();
 }
