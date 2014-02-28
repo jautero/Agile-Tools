@@ -25,7 +25,7 @@ test("test_setup",function () {
 });
 
 function get_button_text(category) {
-    return "<button onclick=\"opener.sample('"+category+"');window.close();\">"+category+"</button>";
+    return "<button onclick=\"opener.handle_button('"+category+"');\">"+category+"</button>";
 }
 test("test_insert_button", function () {
     var testdiv=$("<div>")

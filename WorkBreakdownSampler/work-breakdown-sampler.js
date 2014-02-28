@@ -44,7 +44,7 @@ var popup;
 function handle_button(category) {
     popup.close()
     sample(category);
-    updaStats();
+    updateStats();
     setTimeout(open_popup,interval*1000);
 }
 function insert_button(contentElement,category,prepend)
